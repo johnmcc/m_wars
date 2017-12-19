@@ -1,9 +1,10 @@
-var express = require("express");
-var app = express();
-
+var express = require('express');
 var parser = require('body-parser');
 var MongoClient = require('mongodb').MongoClient;
+var app = express();
+var path = require("path");
 
+app.use(parser.json());
 app.use(parser.urlencoded({extended: true}));
 app.use(express.static('client/build'));
 
@@ -35,6 +36,13 @@ app.get("/quotes", function(req, res){
 app.post('/quotes', function(req, res) {
 	db.collection('quotes').save(req.body, function(err, result) {
   	if (err) return console.log(err);
-  	res.redirect('/');
+  	res.json('ok');
+ 	});
+});
+
+app.delete('/quotes', function(req, res){
+	db.collection('quotes').remove(function(err, result) {
+  	if (err) return console.log(err);
+		res.json({"response": "ok"});
  	});
 });

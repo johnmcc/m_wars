@@ -8,13 +8,13 @@
 </head>
 <body>
 	<div class="container">
-		<form action="/quotes" method="POST">
-	  	<input type="text" placeholder="name" name="name">
-	  	<input type="text" placeholder="quote" name="quote">
+		<form id="submitForm">
+	  	<input type="text" id="name" placeholder="name" name="name">
+	  	<input type="text" id="quote" placeholder="quote" name="quote">
 	  	<button type="submit">Submit</button>
 		</form>
 
-		<form action="/delete" method="POST">
+		<form id="deleteForm">
 			<button id="deleteButton" type="submit">Delete All</button>
 		</form>
 	</div>

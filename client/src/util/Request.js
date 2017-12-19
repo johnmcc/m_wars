@@ -5,9 +5,29 @@ var Request = {
 	    .then(onComplete)
 	    .catch(console.error);
 	},
-	post: function(){
-		
+	post: function(url, payload){
+		var myConfig = {
+			headers: {
+      	'Accept': 'application/json',
+      	'Content-Type': 'application/json'
+    	},
+			method: "POST",
+			body: JSON.stringify(payload)
+		};
+
+		fetch(url, myConfig)
+    	.then(request => request.json())
+			.catch(console.error);
+	},
+	delete: function(url){
+		var myConfig = {
+			method: "DELETE"
+		};
+
+		fetch(url, myConfig)
+    .then(request => request.json())
+		.catch(console.error);
 	}
 };
 
-export default Request;
+module.exports = Request;
