@@ -19,6 +19,8 @@ SubmitFormView.prototype = {
 			quote: this.quote.value
 		};
 		PubSub.publish("/SubmitFormView/NewQuote", quoteObj);
+		this.name.value = "";
+		this.quote.value = "";
 	}
 };
 
