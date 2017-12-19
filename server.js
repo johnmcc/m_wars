@@ -22,3 +22,19 @@ MongoClient.connect("mongodb://localhost:27017/", function(err, client){
 app.get("/", function(req, res){
 	res.sendFile(__dirname + "/build/index.html");
 });
+
+app.get("/quotes", function(req, res){
+	db.collection("quotes").find().toArray(function(err, quotes){
+		if(err){
+			return console.log(err);
+		}
+		res.json(quotes);
+	});
+});
+
+app.post('/quotes', function(req, res) {
+	db.collection('quotes').save(req.body, function(err, result) {
+  	if (err) return console.log(err);
+  	res.redirect('/');
+ 	});
+});
