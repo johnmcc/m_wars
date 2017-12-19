@@ -5,7 +5,7 @@ var Request = {
 	    .then(onComplete)
 	    .catch(console.error);
 	},
-	post: function(url, payload){
+	post: function(url, payload, onComplete){
 		var myConfig = {
 			headers: {
       	'Accept': 'application/json',
@@ -17,16 +17,18 @@ var Request = {
 
 		fetch(url, myConfig)
     	.then(request => request.json())
+			.then(onComplete)
 			.catch(console.error);
 	},
-	delete: function(url){
+	delete: function(url, onComplete){
 		var myConfig = {
 			method: "DELETE"
 		};
 
 		fetch(url, myConfig)
-    .then(request => request.json())
-		.catch(console.error);
+    	.then(request => request.json())
+			.then(onComplete)
+			.catch(console.error);
 	}
 };
 

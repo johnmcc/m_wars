@@ -36,13 +36,18 @@ app.get("/quotes", function(req, res){
 app.post('/quotes', function(req, res) {
 	db.collection('quotes').save(req.body, function(err, result) {
   	if (err) return console.log(err);
-  	res.json('ok');
+		db.collection("quotes").find().toArray(function(err, quotes){
+			if(err){
+				return console.log(err);
+			}
+			res.json(quotes);
+		});
  	});
 });
 
 app.delete('/quotes', function(req, res){
 	db.collection('quotes').remove(function(err, result) {
   	if (err) return console.log(err);
-		res.json({"response": "ok"});
+		res.json([]);
  	});
 });

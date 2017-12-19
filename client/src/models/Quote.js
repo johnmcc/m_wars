@@ -16,17 +16,16 @@ Quote.prototype = {
 		PubSub.subscribe("/SubmitFormView/NewQuote", this.save.bind(this));
 	},
 	all: function(){
-		Request.get("/quotes", function(quotes){
-			PubSub.publish("/quotes/all", quotes);
-		});
+		Request.get("/quotes", this.publishQuotes);
 	},
 	deleteAll: function(){
-		Request.delete("/quotes");
-		this.all();
+		Request.delete("/quotes", this.publishQuotes);
 	},
 	save: function(quote){
-		Request.post("/quotes", quote.detail);
-		this.all();
+		Request.post("/quotes", quote.detail, this.publishQuotes);
+	},
+	publishQuotes: function(quotes){
+		PubSub.publish("/quotes/all", quotes);
 	}
 };
 
