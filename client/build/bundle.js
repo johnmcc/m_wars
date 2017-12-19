@@ -116,11 +116,7 @@ window.addEventListener("load", function(){
 var PubSub = __webpack_require__(0);
 var Request = __webpack_require__(3);
 
-var Quote = function(name, quote){
-	this.id = null;
-	this.name = name;
-	this.quote = quote;
-
+var Quote = function(){
 	this.attachListeners();
 }
 

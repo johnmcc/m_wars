@@ -1,11 +1,7 @@
 var PubSub = require("../util/PubSub");
 var Request = require("../util/Request");
 
-var Quote = function(name, quote){
-	this.id = null;
-	this.name = name;
-	this.quote = quote;
-
+var Quote = function(){
 	this.attachListeners();
 }
 
